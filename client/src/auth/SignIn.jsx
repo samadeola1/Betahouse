@@ -19,7 +19,6 @@ const signInSchema = yup.object().shape({
 const SignIn = () => {
   const [isReveal, setIsReveal] = useState(false);
   const navigate = useNavigate();
-   const { user } = useAuth();
 
   const {
     register,
