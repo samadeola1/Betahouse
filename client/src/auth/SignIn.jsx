@@ -8,7 +8,7 @@ import visibilityOn from "../assets/visibility_on.svg";
 import visibilityOff from "../assets/visibility_off.svg";
 import SignInImage from "../assets/signup-image.svg";
 import GoogleIcon from "../assets/googleIcon.svg";
-import { useAuth } from "../context/AuthContext";
+
 
 // Validation Schema for Sign In
 const signInSchema = yup.object().shape({
@@ -19,7 +19,7 @@ const signInSchema = yup.object().shape({
 const SignIn = () => {
   const [isReveal, setIsReveal] = useState(false);
   const navigate = useNavigate();
-   const { login } = useAuth();
+   const { user } = useAuth();
 
   const {
     register,
@@ -44,7 +44,7 @@ const SignIn = () => {
       if (response.ok) {
         toast.success(result.message);
        localStorage.setItem("customerToken", res.user.token);
-       login(res.user.token, res.user);
+     
         navigate("/"); // Redirect to the home page
       } else {
         toast.error(result.message);
