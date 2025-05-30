@@ -30,7 +30,7 @@ export const signUp = async (req, res) => {
   try {
     const existingEmail = await USER.findOne({ email });
     if (existingEmail) {
-      res.status(400).json({ success: false, errMsg: "Email already exists" });
+      res.status(400).json({ success: false, errMsg: "Email already exists, please Sign In" });
       return;
     }
 

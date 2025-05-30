@@ -9,44 +9,46 @@ export const AuthProvider = ({ children }) => {
     const [isLoading, setIsLoading] = useState(false);
 
   
-    useEffect(() => {
-        const checkUserStatus = async () => {
-            try {
-                setIsLoading(true);
+  useEffect(() => {
+    const checkUserStatus = async () => {
+      try {
+        setIsLoading(true);
 
-              const token = localStorage.getItem("customerToken");
-      
-              if (!token) {
-                setUser(null);
-                return;
-              }
-      
-              const response = await fetch(
-                `http://localhost:5050/api/auth/api/auth/isloggedin`,
-                {
-                  headers: { Authorization: `Bearer ${token}` },
-                }
-              );
-      
-              const data = await response.json();
-      
-              if (!data.success) {
-                localStorage.removeItem("customerToken");
-                setUser(null);
-              } else {
-                setUser({ token, ...data.user });
-              }
-            } catch (error) {
-              localStorage.removeItem("customerToken");
-              setUser(null);
-            }
-            finally{
-                setIsLoading(false);
+        const token = localStorage.getItem("customerToken");
+        console.log("Token from localStorage:", token); // Debugging log
 
-            }
-          };
-          checkUserStatus()
-    }, []);
+        if (!token) {
+          setUser(null);
+          return;
+        }
+
+        const response = await fetch(
+          `http://localhost:5050/api/auth/isloggedin`,
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        );
+
+        const data = await response.json();
+        console.log("Response from API:", data); // Debugging log
+
+        if (!data.success) {
+          localStorage.removeItem("customerToken");
+          setUser(null);
+        } else {
+          setUser({ token, ...data.user });
+        }
+      } catch (error) {
+        console.error("Error in checkUserStatus:", error); // Debugging log
+        localStorage.removeItem("customerToken");
+        setUser(null);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    checkUserStatus();
+  }, []);
   
     const login = (token, userData) => {
       localStorage.setItem("customerToken", token);

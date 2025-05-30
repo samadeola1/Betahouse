@@ -43,30 +43,26 @@ const SignUp = () => {
       });
       const res = await req.json();
       if (!res.success) {
+        // Show error message if sign-up fails
         setIsError(res.errMsg);
+        toast.error(res.errMsg); // Display error using toast
         setTimeout(() => setIsError(null), 3000);
+        return; // Stop further execution if sign-up fails
       }
-      // Redirect to Sign In page after successful submission
-      navigate("/signin");
-      if (res.success) {
-        toast.success(res.message);
-        reset();
-        // Redirect to Sign In page after successful submission
-        navigate("/signin");
-      }
+
+      // If sign-up is successful
+      toast.success(res.message);
+      reset(); // Reset the form
+      navigate("/signin"); // Redirect to the sign-in page
     } catch (error) {
-      if (error.message == "Failed to fetch") {
-        toast.error("connection failed");
-        return;
-      }
-      toast.error(error.message);
-    } finally {
-      // setIsClicked(false)
+      // Handle unexpected errors
+      toast.error("An unexpected error occurred. Please try again.");
+      console.error("Sign-up error:", error);
     }
   };
    const btnText = isSubmitting ? <LoadingRing /> : "Sign Up";
   return (
-    <div className="min-h-screen bg-white flex flex-col lg:flex-row lg:gap-10 items-center justify-center lg:pt-[50px] pt-28 px-6 lg:px-[130px]">
+    <div className="min-h-screen bg-white flex flex-col lg:flex-row lg:gap-10 items-center justify-center lg:pt-[50px] pt-28 pb-48 lg:pb-3 px-6 lg:px-[130px]">
       {/* Sign Up Form */}
       <div className="w-full lg:w-1/2 bg-white h-[846px]">
         <h1 className="text-[25px] font-bold text-black mb-4">

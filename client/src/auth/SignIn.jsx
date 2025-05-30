@@ -33,7 +33,7 @@ function togglePwd() {
 
   const onSubmit = async (data) => {
     try {
-      const req = await fetch("http://localhost:5000/api/auth/signin", {
+      const req = await fetch("http://localhost:5050/api/auth/sign-in", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
