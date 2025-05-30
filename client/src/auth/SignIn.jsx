@@ -2,35 +2,38 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
+import MyButton from "../components/MyButton";
+import { signInSchema } from "../utils/ValidationSchema";
+import LoadingRing from "../utils/Loader";
 import { Toaster, toast } from "react-hot-toast";
 import visibilityOn from "../assets/visibility_on.svg";
 import visibilityOff from "../assets/visibility_off.svg";
 import SignInImage from "../assets/signup-image.svg";
 import GoogleIcon from "../assets/googleIcon.svg";
+import { useAuth } from "../context/AuthContext"; 
 
 
-// Validation Schema for Sign In
-const signInSchema = yup.object().shape({
-  email: yup.string().email("Invalid email").required("Email is required"),
-  password: yup.string().min(8, "Password must be at least 8 characters").required("Password is required"),
-});
 
 const SignIn = () => {
-  const [isReveal, setIsReveal] = useState(false);
+const [isReveal, setIsReveal] = useState(false);
+const [isError, setIsError] = useState(null);
+const { login } = useAuth();
+function togglePwd() {
+  setIsReveal((prev) => !prev);
+}
   const navigate = useNavigate();
 
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm({
     resolver: yupResolver(signInSchema),
   });
 
   const onSubmit = async (data) => {
     try {
-      const response = await fetch("http://localhost:5000/api/auth/signin", {
+      const req = await fetch("http://localhost:5000/api/auth/signin", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -38,11 +41,17 @@ const SignIn = () => {
         body: JSON.stringify(data),
       });
 
-      const result = await response.json();
+      const res = await req.json();
+       if (!res.success) {
+         // toast.error(res.errMsg);
 
-      if (response.ok) {
-        toast.success(result.message);
-       localStorage.setItem("customerToken", res.user.token);
+         setIsError(res.errMsg);
+         setTimeout(() => setIsError(null), 3000);
+       }
+  if(res.success){
+        toast.success(res.message)
+        localStorage.setItem("customerToken",res.user.token)
+        login(res.user.token, res.user);
      
         navigate("/"); // Redirect to the home page
       } else {
@@ -52,6 +61,7 @@ const SignIn = () => {
       toast.error("Sign In Failed!");
     }
   };
+   const btnText = isSubmitting ? <LoadingRing /> : "Sign In";
 
   return (
     <div className="min-h-screen bg-white flex flex-col lg:flex-row items-center justify-center pt-[120px] px-6 lg:px-[130px]">
@@ -64,7 +74,9 @@ const SignIn = () => {
         <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
           {/* Email */}
           <div>
-            <label className="block text-black text-sm font-medium mb-2">Email</label>
+            <label className="block text-black text-sm font-medium mb-2">
+              Email
+            </label>
             <input
               type="email"
               placeholder="Enter Email"
@@ -75,7 +87,9 @@ const SignIn = () => {
           </div>
           {/* Password */}
           <div className="relative">
-            <label className="block text-black text-sm font-medium mb-2">Password</label>
+            <label className="block text-black text-sm font-medium mb-2">
+              Password
+            </label>
             <input
               type={isReveal ? "text" : "password"}
               placeholder="Enter Password"
@@ -86,10 +100,15 @@ const SignIn = () => {
               className="absolute top-10 right-3 w-6 h-6 cursor-pointer"
               src={isReveal ? visibilityOff : visibilityOn}
               alt="toggle-password-img"
-              onClick={() => setIsReveal(!isReveal)}
+              onClick={togglePwd}
             />
             <p className="text-red-600">{errors.password?.message}</p>
           </div>
+          {isError && (
+            <div className="text-red-500 bg-red-100 px-4 py-2 rounded mt-2 text-sm">
+              {isError}
+            </div>
+          )}
           {/* Forgot Password */}
           <div className="text-right">
             <Link
@@ -100,12 +119,11 @@ const SignIn = () => {
             </Link>
           </div>
           {/* Sign In Button */}
-          <button
-            type="submit"
-            className="w-full bg-[#3D9970] text-white py-3 rounded-md hover:bg-[#2E7A5C] transition"
-          >
-            Sign In
-          </button>
+          <MyButton
+            text={btnText}
+            className="w-full h-[40px] font-[500] text-[20px] "
+            disabled={isSubmitting}
+          />
         </form>
         {/* or Divider */}
         <div className="flex items-center my-6">
@@ -132,7 +150,11 @@ const SignIn = () => {
       {/* Image Section */}
       <div className="hidden lg:flex lg:w-1/2 relative items-center justify-center">
         <div className="w-[90%] h-[80%] bg-gray-100 rounded-lg overflow-hidden shadow-md">
-          <img src={SignInImage} alt="Sign In" className="w-full h-full object-cover" />
+          <img
+            src={SignInImage}
+            alt="Sign In"
+            className="w-full h-full object-cover"
+          />
         </div>
       </div>
     </div>

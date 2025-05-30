@@ -432,3 +432,111 @@ export const propertyTypes = [
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus quis maxime earum praesentium soluta, assumenda recusandae ipsam quam? Ea facere maiores quae aspernatur voluptas unde ab incidunt quis eum assumenda laboriosam, ratione officiis explicabo facilis eos eius minus ducimus tempora.",
   },
 ];
+
+export const popularPropertiesData = [
+  {
+    _id: 1,
+    image:
+      "https://res.cloudinary.com/dwkpeu5ra/image/upload/v1748419308/houseimage10_ude5mn.png",
+    title: "Semi Detached Duplex",
+    price: "₦1,430,000,000",
+    room: "6 Bed",
+    bathroom: "3 Bath",
+    area: "720 sq ft",
+    locationIcon:
+      "https://res.cloudinary.com/dwkpeu5ra/image/upload/v1748361237/locationIcon_xxtzsb.svg",
+    location: "Victoria ISland, Lagos",
+  },
+  {
+    _id: 2,
+    image:
+      "https://res.cloudinary.com/dwkpeu5ra/image/upload/v1748419308/houseimage11_ed3tlj.png",
+    title: "Special Duplex",
+    price: "₦670,000,000",
+    room: "6 Bed",
+    bathroom: "3 Bath",
+    area: "720 sq ft",
+    locationIcon:
+      "https://res.cloudinary.com/dwkpeu5ra/image/upload/v1748361237/locationIcon_xxtzsb.svg",
+    location: "Victoria ISland, Lagos",
+  },
+  {
+    _id: 3,
+    image:
+      "https://res.cloudinary.com/dwkpeu5ra/image/upload/v1748419308/houseimage12_sl0dsa.png",
+    title: "Split-Level House",
+    price: "₦340,000,000",
+    room: "6 Bed",
+    bathroom: "3 Bath",
+    area: "720 sq ft",
+    locationIcon:
+      "https://res.cloudinary.com/dwkpeu5ra/image/upload/v1748361237/locationIcon_xxtzsb.svg",
+    location: "Victoria ISland, Lagos",
+  },
+  {
+    _id: 4,
+    image:
+      "https://res.cloudinary.com/dwkpeu5ra/image/upload/v1748419308/houseimge13_y5a6hk.png",
+    title: "Twin Duplex",
+    price: "₦290,000,000",
+    room: "6 Bed",
+    bathroom: "3 Bath",
+    area: "720 sq ft",
+    locationIcon:
+      "https://res.cloudinary.com/dwkpeu5ra/image/upload/v1748361237/locationIcon_xxtzsb.svg",
+    location: "Victoria ISland, Lagos",
+  },
+  {
+    _id: 5,
+    image:
+      "https://res.cloudinary.com/dwkpeu5ra/image/upload/v1748419308/houseimage10_ude5mn.png",
+    title: "Semi Detached Duplex",
+    price: "₦1,430,000,000",
+    room: "6 Bed",
+    bathroom: "3 Bath",
+    area: "720 sq ft",
+    locationIcon:
+      "https://res.cloudinary.com/dwkpeu5ra/image/upload/v1748361237/locationIcon_xxtzsb.svg",
+    location: "Victoria ISland, Lagos",
+  },
+
+  {
+    _id: 6,
+    image:
+      "https://res.cloudinary.com/dwkpeu5ra/image/upload/v1748419308/houseimage11_ed3tlj.png",
+    title: "Special Duplex",
+    price: "₦670,000,000",
+    room: "6 Bed",
+    bathroom: "3 Bath",
+    area: "720 sq ft",
+    locationIcon:
+      "https://res.cloudinary.com/dwkpeu5ra/image/upload/v1748361237/locationIcon_xxtzsb.svg",
+    location: "Victoria ISland, Lagos",
+  },
+  {
+    _id: 7,
+    image:
+      "https://res.cloudinary.com/dwkpeu5ra/image/upload/v1748419308/houseimge13_y5a6hk.png",
+    title: "Twin Duplex",
+    price: "₦290,000,000",
+    room: "6 Bed",
+    bathroom: "3 Bath",
+    area: "720 sq ft",
+    locationIcon:
+      "https://res.cloudinary.com/dwkpeu5ra/image/upload/v1748361237/locationIcon_xxtzsb.svg",
+    location: "Victoria ISland, Lagos",
+  },
+  {
+    _id: 8,
+    image:
+      "https://res.cloudinary.com/dwkpeu5ra/image/upload/v1748419308/houseimage12_sl0dsa.png",
+    title: "Split-Level House",
+    price: "₦340,000,000",
+    room: "6 Bed",
+    bathroom: "3 Bath",
+    area: "720 sq ft",
+    locationIcon:
+      "https://res.cloudinary.com/dwkpeu5ra/image/upload/v1748361237/locationIcon_xxtzsb.svg",
+    location: "Victoria ISland, Lagos",
+  },
+];

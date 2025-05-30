@@ -10,7 +10,7 @@ import BathroomIcon from "../../../src/assets/Bathroom-icon.png";
 import ArrowIcon from "../../../src/assets/arrow-icon.svg";
 import ShareIcon from "../../../src/assets/share-icon.png";
 import LoveIcon from "../../../src/assets/love-icon.svg";
-
+import PopularProperties from "../../components/PopularProperties"; 
 const PropertyList = ({ properties }) => {
   const itemsPerPage = 9;
   const [currentPage, setCurrentPage] = useState(1);
@@ -28,11 +28,7 @@ const PropertyList = ({ properties }) => {
   return (
     <div className="min-h-screen py-10 lg:px-[80px]">
       <div className="container mx-auto px-4">
-        <h1 className="text-3xl font-bold text-center mb-8">
-          Property Listings
-        </h1>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {currentProperties.map((property) => (
             <div
               key={property._id}
@@ -159,6 +155,10 @@ const PropertyList = ({ properties }) => {
             </button>
           ))}
         </div>
+      </div>
+      {/* Popular Properties Section */}
+      <div className="mt-16">
+        <PopularProperties />
       </div>
     </div>
   );

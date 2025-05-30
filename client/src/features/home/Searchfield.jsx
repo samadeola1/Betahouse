@@ -121,7 +121,7 @@ const Searchfield = ({ onFilter }) => {
       <div className="hidden md:block h-[40px] w-[1px] bg-gray-300 mx-4"></div>
 
       {/* Find My Properties Button */}
-      <div className="flex flex-col items-start w-full md:w-auto bg-[#3D9970] rounded-md px-6 py-3 ">
+      <div className="flex flex-col items-start w-full md:w-auto bg-[#3D9970] rounded-md px-2 py-3 ">
         <button
           onClick={handleFilter}
           className="w-full text-white text-[14px] font-outfit uppercase transition"

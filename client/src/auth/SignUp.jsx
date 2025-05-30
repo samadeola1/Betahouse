@@ -4,11 +4,13 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { signUpSchema } from "../utils/ValidationSchema";
 import { Toaster, toast } from "react-hot-toast";
+import MyButton from "../components/MyButton";
 import visibilityOn from "../assets/visibility_on.svg";
 import visibilityOff from "../assets/visibility_off.svg";
 import SignUpImage from "../assets/signup-image.svg";
 import GoogleIcon from "../assets/googleIcon.svg";
 import BetaHouseLogo from "../assets/BH-logo.svg";
+import LoadingRing from "../utils/Loader";
 
 const SignUp = () => {
   const [isReveal, setIsReveal] = useState(false);
@@ -62,6 +64,7 @@ const SignUp = () => {
       // setIsClicked(false)
     }
   };
+   const btnText = isSubmitting ? <LoadingRing /> : "Sign Up";
   return (
     <div className="min-h-screen bg-white flex flex-col lg:flex-row lg:gap-10 items-center justify-center lg:pt-[50px] pt-28 px-6 lg:px-[130px]">
       {/* Sign Up Form */}
@@ -170,9 +173,13 @@ const SignUp = () => {
             </div>
           )}
           {/* Sign Up Button */}
-          <button className="w-full bg-[#3D9970] text-white py-3 rounded-md hover:bg-[#2E7A5C] transition" >
-            Sign Up
-          </button>
+          <MyButton
+            disabled={isSubmitting}
+            text={btnText}
+            className={`w-full h-[40px] font-[500] text-[20px] ${
+              isSubmitting ? "bg-dark" : "bg-[#3D9970] hover:bg-[#2E7A5C] transition-all duration-300 text-white"
+            } `}
+          />
         </form>
         {/* or Divider */}
         <div className="flex items-center my-6">

@@ -28,7 +28,7 @@ const Navbar = () => {
             Home
           </a>
           <a
-            href="/properties"
+            href=""
             className="text-[22px] font-exo2 text-[#FFFFFF] hover:text-[#3D9970]"
           >
             Properties
