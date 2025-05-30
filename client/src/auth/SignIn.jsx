@@ -13,7 +13,7 @@ import GoogleIcon from "../assets/googleIcon.svg";
 import { useAuth } from "../context/AuthContext"; 
 
 
-
+const baseUrl = import.meta.env.VITE_API_URL;
 const SignIn = () => {
 const [isReveal, setIsReveal] = useState(false);
 const [isError, setIsError] = useState(null);
@@ -33,7 +33,7 @@ function togglePwd() {
 
   const onSubmit = async (data) => {
     try {
-      const req = await fetch("http://localhost:5050/api/auth/sign-in", {
+      const req = await fetch(`${baseUrl}/api/auth/sign-in`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

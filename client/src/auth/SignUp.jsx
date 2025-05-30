@@ -12,6 +12,7 @@ import GoogleIcon from "../assets/googleIcon.svg";
 import BetaHouseLogo from "../assets/BH-logo.svg";
 import LoadingRing from "../utils/Loader";
 
+const baseUrl = import.meta.env.VITE_API_URL;
 const SignUp = () => {
   const [isReveal, setIsReveal] = useState(false);
   const [isReveal2, setIsReveal2] = useState(false);
@@ -34,7 +35,7 @@ const SignUp = () => {
   });
   const onSubmit = async (data) => {
     try {
-      const req = await fetch(`http://localhost:5050/api/auth/sign-up`, {
+      const req = await fetch(`${baseUrl}/api/auth/sign-up`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
